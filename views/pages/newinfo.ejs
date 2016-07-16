@@ -1,0 +1,115 @@
+
+<html>
+<head>
+  <title>New Info for <%= slave.slave_id %></title>
+<% include partials/head %>
+</head>
+<body>
+
+<% include partials/header %>
+
+<div class="mainbox">
+  <h1>Enter information for <%= slave.slave_id %></h1>
+  <p><%= slave.message %></p>
+  <p>You can use this form to enter slave information for your registration number.</p>
+  <table style="margin: 0 auto">
+    <form method="post" action="/<%= slave.slave_id %>/register">
+      <tr class="grayrow">
+        <td colspan="2"></td>
+        <td>
+          <input type="hidden" name="slave_id" value="<%= slave.slave_id %>">
+        </td>
+      </tr>
+      <tr class="grayrow">
+        <td colspan="2"></td>
+        <td>
+          <input type="hidden" name="fullregdate" value="<%= slave.fullregdate %>">
+        </td>
+      </tr>
+      <tr class="grayrow">
+        <td colspan="2">Registration Date:</td>
+        <td colspan="3" style="text-align: center; "><%= slave.regdate %>
+          <input type="hidden" name="regdate" value="<%= slave.regdate %>">
+        </td>
+      </tr>
+      <tr class="grayrow">
+        <td colspan="2">Email address:</td>
+        <td>
+          <input type="text" name="email" value="<%= slave.email %>">
+        </td>
+      </tr>
+      <tr class="grayrow">
+        <td colspan="2">Currently known as:</td>
+        <td>
+          <input type="text" name="knownas" size="20" maxlength="20" value="<%= slave.knownas %>">
+        </td>
+      </tr>
+      <tr class="grayrow">
+        <td colspan="2">Status:</td>
+        <td>
+          <select name="ownertype">
+            <option value="0">free and unowned</option>
+            <option value="1">owned slave</option>
+            <option value="2">collared submissive</option>
+            <option value="3">owned property</otion>
+            <option value="4">submissive in sevice</option>
+            <option value="5">servant in service</option>
+            <option value="6">submissive in training</option>
+          </select>
+        </td>
+      </tr>
+      <tr class="grayrow">
+        <td colspan="3">If in service, owned etc:</td>
+      </tr>
+      <tr class="grayrow">
+        <td>&nbsp;</td>
+        <td>Owner/dominant's name:</td>
+        <td>
+          <input type="text" size="20" maxlength="20" name="ownername" value="<%= slave.ownername %>"></td>
+      </tr>
+      <tr class="grayrow">
+        <td>&nbsp;</td>
+        <td>In service since:</td>
+        <td>
+          <input type="text" size="2" maxlength="2" name="ownedday">
+          <select name=ownedmonth>
+            <option value=""> </option>
+            <option value="January">January</option>
+            <option value="February">February</option>
+            <option value="March">March</option>
+            <option value="April">April</option>
+            <option value="May">May</option>
+            <option value="June">June</option>
+            <option value="July">July</option>
+            <option value="August">August</option>
+            <option value="September">September</option>
+            <option value="October">October</option>
+            <option value="November">November</option>
+            <option value="December">December</option>
+          </select>
+          <input type="text" size="4" maxlength="4" name="ownedyear">
+        </td>
+      </tr>
+      <tr class="grayrow">
+        <td>&nbsp;</td>
+        <td>Type of that service:</td>
+        <td>
+          <select name="owneddatetype">
+            <option value="0">in service</option>
+            <option value="1">owned by</option>
+            <option value="2">collared to</option>
+            <option value="3">being trained</option>
+          </select>
+        </td>
+      </tr>
+      <tr class="grayrow">
+        <td colspan="3" style="text-align: center; ">
+          <input type="submit" value="Submit">
+        </td>
+      </tr>
+    </form>
+  </table>
+  <% include partials/footer %>
+</div>
+</body>
+</html>

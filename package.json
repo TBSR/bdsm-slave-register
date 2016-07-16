@@ -1,0 +1,35 @@
+{
+  "name": "slave-register",
+  "version": "0.0.1",
+  "description": "Slave Register Demo",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "NODE_DEV=development nodemon server.js"
+  },
+  "author": "Fernando Ortiz",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "bwip-js": "^1.0.5",
+    "canvas": "^1.4.0",
+    "ejs": "^2.4.2",
+    "errorhandler": "^1.4.3",
+    "express": "^4.14.0",
+    "images": "^3.0.0",
+    "method-override": "^2.3.6",
+    "moment": "^2.14.1",
+    "mongodb": "^2.2.1",
+    "node-notifier": "^4.6.0",
+    "path": "^0.12.7",
+    "request": "^2.73.0",
+    "serve-favicon": "^2.3.0",
+    "slrngen-js": "0.0.7"
+  },
+  "devDependencies": {
+    "nodemon": "^1.9.2"
+  },
+  "engines": {
+    "node": "6.2.2"
+  }
+}

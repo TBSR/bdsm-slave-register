@@ -1,0 +1,31 @@
+<html>
+<head>
+<title>BDSM Slave Registration Number <%= slave.slave_id %></title>
+<% include partials/head %>
+</head>
+<body>
+<% include partials/header %>
+<div class="mainbox">
+
+<h1>SLRN <%= slave.slave_id %></h1>
+<p><%= slave.slave_id %> was issued by The BDSM Slave Register on <%= slave.fullregdate %>.
+<p style="text-align: center; padding-bottom: 5px">
+<input type="button" value="Make PNG/PDF certificate" onclick="window.location.href='/<%= slave.slave_id %>/cert'"></p>
+<p style="padding-bottom: 30px">PNG or PDF certificates created using this button can include owner details, collaring date, name etc.</p>
+<div style="width: 600px; margin: 0 auto; border: 4px solid #0000FF; padding: 10px">
+<div style="border: 2px solid #0000FF; padding: 10px; text-align: center">
+<h2 style="color: black">Registration Certificate for</h2>
+<h1 style="color: black"><%= slave.slave_id %></h1>
+<p>This is to certify that the registrant with SLRN <%= slave.slave_id %>
+ has been registered in The BDSM Slave Register since <%= slave.regdate %>.</p>
+<p>This registration may be viewed at<br>http://www.bdsmslaveregister.com/<%= slave.slave_id %></p>
+<p>For more information about The BDSM Slave Register please visit www.bdsmslaveregister.com</p>
+<div style="display: table; width: 100%"><div style="display: table-row">
+<div style="display: table-cell; text-align: center"><a href="/images/<%= slave.slave_id %>.png"><img src="/images/<%= slave.slave_id %>.png" width=150 height=150></a></div>
+<div style="display: table-cell; text-align: center"><img src="put_our_BDSM_logo_here.png" width=150 height=150></div>
+</div></div>
+</div></div>
+</div>
+<% include partials/footer %>
+</body>
+</html>

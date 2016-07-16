@@ -1,0 +1,50 @@
+<html>
+<head>
+<title>The BDSM Slave Register - Master/slave, O&amp;P, SLRN, certificates</title>
+<meta name="description"
+ content="The Slave Register was created in 2000 to provide slaves and
+ submissives with a unique Slave Registration Number (SLRN). Also has pages for
+ creating certificates as FetLife-friendly PNG images or printable PDF files.">
+<script type="text/javascript">
+function isDigitKey(txt, evt)
+{
+  var charCode = (evt.which) ? evt.which : evt.keyCode;
+  if (charCode > 31  && (charCode < 48 || charCode > 57)) return false;
+  return true;
+}
+</script>
+<% include partials/head %>
+
+</head>
+<body>
+<% include partials/header %>
+
+<div class="mainbox">
+<h1 class="mainpage" style="padding: 20px">The BDSM Slave Register</h1>
+
+<p class="lookupform">
+Registration number:
+<input type="text" id="slrn1" size="3" class="lookupinput"
+onkeyup="if (this.value.length >= 3) document.getElementById('slrn2').focus();"
+Xonpaste="if (this.value.length >= 3) { document.getElementById('slrn2').value = document.getElementById('slrn1').value.substr(4,3); document.getElementById('slrn3').value = document.getElementById('slrn1').value.substr(8,3); document.getElementById('slrn1').value = document.getElementById('slrn1').value.substr(0,3) }"
+onkeypress="return isDigitKey(this,event);">-<input type="text" class="lookupinput"
+onkeyup="if (this.value.length >= 3) document.getElementById('slrn3').focus();"
+id="slrn2" size="3" onkeypress="return isDigitKey(this,event);">-<input type="text" class="lookupinput"
+id="slrn3" size="3" onkeypress="return isDigitKey(this,event);">
+</p>
+<p class="lookupform">
+<input type="button" value="Find on TBSR" class="lookupinput"
+ onclick="if ((document.getElementById('slrn1').value != '') && (document.getElementById('slrn2').value != '') && (document.getElementById('slrn3').value != '')) window.location.href='/' + document.getElementById('slrn1').value + '-' + document.getElementById('slrn2').value + '-' + document.getElementById('slrn3').value;">
+<input type="button" value="Make Certificate" class="lookupinput"
+ onclick="if ((document.getElementById('slrn1').value != '') && (document.getElementById('slrn2').value != '') && (document.getElementById('slrn3').value != '')) window.location.href='/' + document.getElementById('slrn1').value + '-' + document.getElementById('slrn2').value + '-' + document.getElementById('slrn3').value + '/cert';">
+</p>
+
+<div style="margin: 0 auto; padding-top: 20px;  text-align: center">
+Not registered? <a href="/i/register">Become a registered slave.</a>
+</div>
+
+<% include partials/footer %>
+</div>
+</body>
+
+</html>
