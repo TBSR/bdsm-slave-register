@@ -1,3 +1,8 @@
 #!/usr/bin/env bash
 
 heroku config -s > .env
+
+git remote -v | grep heroku
+if [ "$?" = "1" ]; then
+  heroku git:remote -a tbsr-demo
+fi 
