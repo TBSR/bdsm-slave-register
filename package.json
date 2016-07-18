@@ -1,11 +1,12 @@
 {
-  "name": "slave-register",
+  "name": "bdsm-slave-register",
   "version": "0.0.1",
   "description": "Slave Register Demo",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "NODE_DEV=development nodemon server.js"
+    "dev": "NODE_DEV=development nodemon server.js",
+    "test": "gulp",
+    "prepublish": "gulp prepublish"
   },
   "author": "Fernando Ortiz",
   "license": "MIT",
@@ -20,14 +21,35 @@
     "method-override": "^2.3.6",
     "moment": "^2.14.1",
     "mongodb": "^2.2.1",
-    "node-notifier": "^4.6.0",
     "path": "^0.12.7",
     "request": "^2.73.0",
     "serve-favicon": "^2.3.0",
     "slrngen-js": "0.0.7"
   },
   "devDependencies": {
-    "nodemon": "^1.9.2"
+    "nodemon": "^1.9.2",
+    "eslint": "^2.1.0",
+    "eslint-config-xo-space": "^0.13.0",
+    "babel-eslint": "^4.1.8",
+    "eslint-plugin-babel": "^3.1.0",
+    "gulp": "^3.9.0",
+    "gulp-eslint": "^2.0.0",
+    "gulp-exclude-gitignore": "^1.0.0",
+    "gulp-line-ending-corrector": "^1.0.1",
+    "gulp-istanbul": "^0.10.3",
+    "gulp-mocha": "^2.0.0",
+    "gulp-plumber": "^1.0.0",
+    "gulp-nsp": "^2.1.0",
+    "gulp-babel": "^5.1.0",
+    "del": "^2.0.2",
+    "babel-core": "^5.5.0",
+    "isparta": "^3.0.3"
+  },
+  "eslintConfig": {
+    "extends": "xo-space",
+    "env": {
+      "mocha": true
+    }
   },
   "engines": {
     "node": "6.2.2"
