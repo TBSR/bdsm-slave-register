@@ -5,13 +5,15 @@ node_js:
   - v4
   - '0.12'
   - '0.10'
+before_install:
+  - sudo apt-get -qq update
+  - sudo apt-get install -y libcairo2-dev libjpeg8-dev libpango1.0-dev libgif-dev build-essential g++
 deploy:
   provider: heroku
   api_key:
     secure: TkEnyZm5cl7wDxr1NloLHdsISLO+7kJHNJnZyFIHiEwp4CTyAPjvkOCMxjS0+dLAp7P0PcOmeB9+1HjEL4wczxwIfdpAWUY6RT/+o8c3dwQjeHog7QDonGWzJGFGz9LljAwFuasCa6sgWh6BkY3JmiuR6Mt+lrokxCMQsG7UMJCgWiaHfEqaZFwXzo9Qp0d90AD8/L2Dk/tNF21BPf4O/vcz1GFmd3hJfWaIujNzbl/ia4fcv7Cq2lR9bHuzLKhao1MJ2TbmQVHv8m6lZszJSczpa0SHL6Iv4xNBAJKi+ZzrJSVfzW62XjItx9XH5bniyvibaX5z/bH/6qyLUcbMT8DGnDc3aPasKy0g5MFrgoJwIalHLXpOIbqxbY+BfHlR3XztRG9nnRh/JdpN/Bb9H4VTzDCZfSc96cJ01UdHx0HlJL2NNSicdeNwK65px4uhxlKlI9nMU5h5I1m0Alr5borBxUhTMK60vHqLjzzB3g8SWZwq+LZPirFg6lq3Rk8AufIIvjEqZrGlNQGAxLC/N2+yv805EvkvikY9S2Fx/1Ipr8Tj5uikM+beI+jWrDL/rE4OR2t3YmKBB1QJ1oiWq1F16SbFyD4hDL7IqkHphwvW7kTc+YAz8t06syuaix8sokvFtvHBRsVPM9rfifW4ukbOpaKHnMKJxQ4dD9l0zu0=
-  app: 
+  app:
     master: tbsr-demo
     production: bdsmslaveregister
   on:
     repo: TBSR/bdsm-slave-register
-
