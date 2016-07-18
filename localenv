@@ -4,5 +4,8 @@ heroku config -s > .env
 
 git remote -v | grep heroku
 if [ "$?" = "1" ]; then
-  heroku git:remote -a tbsr-demo
-fi 
+  heroku git:remote -a ${1:-$APPNAME}
+fi
+heroku buildpacks:clear
+heroku buildpacks:add https://github.com/TBSR/heroku-buildpack-cairo.git
+heroku buildpacks:add heroku/nodejs
