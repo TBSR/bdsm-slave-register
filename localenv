@@ -1,11 +1,14 @@
 #!/usr/bin/env bash
 
-heroku config -s > .env
+app=${1:-$APPNAME}
+
+heroku config -s --app $app > .env
 
 git remote -v | grep heroku
 if [ "$?" = "1" ]; then
-  heroku git:remote -a ${1:-$APPNAME}
+  heroku git:remote -a $app
 fi
+
 heroku buildpacks:clear
 heroku buildpacks:add https://github.com/TBSR/heroku-buildpack-cairo.git
 heroku buildpacks:add heroku/nodejs
