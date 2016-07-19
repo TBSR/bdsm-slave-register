@@ -38,7 +38,13 @@ function errorNotification(err, str, req) {
 }
 
 function createPNG(code) {
-  png(slrn.defmt(code), path.resolve('./public/images'));
+  png(slrn.defmt(code), path.resolve('./public'), function (err) {
+    if (err) {
+      console.log(err);
+      return false;
+    }
+  });
+  return true;
 }
 
 var uristring =
@@ -90,16 +96,19 @@ app.get('/:id/cert', (req, res) => {
 });
 
 app.post('/:id/register', (req, res) => {
-  db.collection('slaves').save(req.body, (err, result) => {
-    if (err) {
-      return console.log(err);
-    }
-    console.log('saved to database');
-    console.log(req.body);
-    console.log(result);
-    createPNG(req.params.id);
-    res.render('pages/viewcert', {slave: req.body});
-  });
+  if (createPNG(req.params.id)) {
+    db.collection('slaves').save(req.body, (err, result) => {
+      if (err) {
+        return console.log(err);
+      }
+      console.log('saved to database');
+      if (process.env.NODE_ENV === 'development') {
+        console.log(req.body);
+        console.log(result);
+      }
+      res.render('pages/viewcert', {slave: req.body});
+    });
+  }
 });
 
 app.get('/i/register', (req, res) => {
