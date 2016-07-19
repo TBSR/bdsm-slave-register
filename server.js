@@ -47,6 +47,16 @@ function createPNG(code) {
   return true;
 }
 
+function fileExists(file) {
+  var fs = require('fs');
+  fs.access(file, fs.F_OK, function (err) {
+    if (err) {
+      return false;
+    }
+    return true;
+  });
+}
+
 var uristring =
     process.env.MONGOLAB_URI ||
     process.env.MONGOHQ_URL ||
@@ -74,6 +84,9 @@ app.get('/:id', (req, res) => {
     }
 
     if (item) {
+      if (!fileExists(path.resolve('./public/images/' + req.params.id + '.png'))) {
+        createPNG(req.params.id);
+      }
       res.render('pages/viewcert', {slave: item});
     } else {
       slaveRegisterValid(req.params.id, function (valid, data) {
