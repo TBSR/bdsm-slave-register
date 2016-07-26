@@ -1,0 +1,55 @@
+
+<html>
+<head>
+  <title>New Registration Form</title>
+  <% include partials/head %>
+</head>
+<body>
+
+<div class="mainbox">
+  <h1>Enter information requested below</h1>
+  <p><%= slave.message %></p>
+  <p>You can use this form to enter you account information.</p>
+  <table style="margin: 0 auto">
+    <form method="post" action="/p/register">
+      <tr class="grayrow">
+        <td colspan="2">Full Name:</td>
+        <td colspan="3">
+          <input type="text" name="fullname">
+        </td>
+      </tr>
+      <tr class="grayrow">
+        <td colspan="2">Email Address:</td>
+        <td>
+          <input type="text" name="email">
+        </td>
+      </tr>
+      <tr class="grayrow">
+        <td colspan="2">Username:</td>
+        <td>
+          <input type="text" name="username" size="20">
+        </td>
+      </tr>
+      <tr class="grayrow">
+        <td colspan="2">Password:</td>
+        <td>
+          <input type="password" name="password" size="20">
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">Confirm Password:</td>
+        <td>
+          <input type="password" name="confirmpassword" size="20">
+        </td>
+      </tr>
+      <tr class="grayrow">
+        <td colspan="3" style="text-align: center; ">
+          <input type="submit" value="Submit">
+        </td>
+      </tr>
+    </form>
+  </table>
+  <% include partials/footer %>
+</div>
+</body>
+</html>

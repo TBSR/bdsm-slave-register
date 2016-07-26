@@ -1,0 +1,35 @@
+
+<html>
+<head>
+  <title>Login Form</title>
+  <% include partials/head %>
+</head>
+<body>
+
+<div class="mainbox">
+  <h1>Enter your credentials here</h1>
+  <table style="margin: 0 auto">
+    <form method="post" action="/p/login">
+      <tr class="grayrow">
+        <td colspan="2">Username:</td>
+        <td>
+          <input type="text" name="username" size="20">
+        </td>
+      </tr>
+      <tr class="grayrow">
+        <td colspan="2">Password:</td>
+        <td>
+          <input type="password" name="password" size="20">
+        </td>
+      </tr>
+      <tr class="grayrow">
+        <td colspan="3" style="text-align: center; ">
+          <input type="submit" value="Submit">
+        </td>
+      </tr>
+    </form>
+  </table>
+  <% include partials/footer %>
+</div>
+</body>
+</html>

@@ -1,5 +1,12 @@
 <p style="text-align: right; padding-top: 10px; padding-right: 10px">
-<a href="/">Find</a> &nbsp; &nbsp; &nbsp;
-<a href="/i/register">Register</a> &nbsp; &nbsp; &nbsp;
+<% if (!user) { %>
+<a href="/p/login">Login</a> &nbsp; &nbsp; &nbsp;
+<a href="/p/register">Register</a> &nbsp; &nbsp; &nbsp;
+<% } %>
+<% if (user) { %>
+<a href="/i/find">Find</a> &nbsp; &nbsp; &nbsp;
+<a href="/i/slave">Slave</a> &nbsp; &nbsp; &nbsp;
+<a href="/p/logout">Logout</a> &nbsp; &nbsp; &nbsp;
+<% } %>
 <a href="/i/about">About</a>
 </p>

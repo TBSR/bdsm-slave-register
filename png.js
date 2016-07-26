@@ -44,5 +44,5 @@ function generate(code, path, callback) {
 }
 
 module.exports = {
-  PNG: generate
+  png: generate
 };

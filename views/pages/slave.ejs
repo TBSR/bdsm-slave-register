@@ -1,0 +1,27 @@
+<html>
+<head>
+<title>The BDSM Slave Register - Master/slave, O&amp;P, SLRN, certificates</title>
+<% include partials/head %>
+
+</head>
+<body>
+  <% include partials/header %>
+
+<div class="mainbox">
+<h1 class="mainpage" style="padding: 20px">The BDSM Slave Register</h1>
+
+<p>If you are registering a slave account then get started by creating a slave account to hold your information.</p>
+<p><%= slave.message %></p>
+<p class="lookupform">
+  <% if (slave.slave_id) { %>
+  <input type="button" value="Update own Slave Account" class="lookupinput" onclick="window.location.href='/i/slaveupdate';">
+  <% } else { %>
+  <input type="button" value="Create own Slave Account" class="lookupinput" onclick="window.location.href='/i/slavecreate';">
+  <% } %>
+  <input type="button" value="Manage Slaves" class="lookupinput" onclick="window.location.href='/i/slavemanage';">
+</p>
+<% include partials/footer %>
+</div>
+</body>
+
+</html>

@@ -1,7 +1,7 @@
 
 <html>
 <head>
-  <title>New Info for <%= slave.slave_id %></title>
+  <title>Update Info for <%= slave.slave_id %></title>
 <% include partials/head %>
 </head>
 <body>
@@ -14,7 +14,7 @@
   <p><%= slave.message %></p>
   <p>You can use this form to enter slave information for your registration number.</p>
   <table style="margin: 0 auto">
-    <form method="post" action="/<%= slave.slave_id %>/slavecreate">
+    <form method="post" action="/<%= slave.slave_id %>/slaveupdate">
       <tr class="grayrow">
         <td colspan="2"></td>
         <td>
@@ -50,7 +50,7 @@
         <td>
           <select id="ownertype" name="ownertype">
           <% ownertypes.forEach(function(type) { %>
-              <option value="<%= type.value %>"><%= type.text %></option>
+              <option value="<%= type.value %>" <%= (type.value === '10' && slave.ownertype === undefined) ? "selected" : (type.value === slave.ownertype) ? "selected" : "" %>><%= type.text %></option>
           <% }); %>
         </select>
         </td>
@@ -68,13 +68,13 @@
         <td>&nbsp;</td>
         <td>In service since:</td>
         <td>
-          <input type="text" size="2" maxlength="2" name="ownedday">
+          <input type="text" size="2" maxlength="2" name="ownedday" value="<%= slave.ownedday %>">
           <select id="ownedmonth" name="ownedmonth">
           <% ownedmonths.forEach(function(type) { %>
-              <option value="<%= type.value %>"><%= type.text %></option>
+              <option value="<%= type.value %>" <%= (type.value === '50' && slave.ownedmonth === undefined) ? "selected" : (type.value === slave.ownedmonth) ? "selected" : "" %>><%= type.text %></option>
           <% }); %>
         </select>
-          <input type="text" size="4" maxlength="4" name="ownedyear">
+          <input type="text" size="4" maxlength="4" name="ownedyear" value="<%= slave.ownedyear %>">
         </td>
       </tr>
       <tr class="grayrow">
@@ -83,7 +83,7 @@
         <td>
           <select id="owneddatetype" name="owneddatetype">
           <% owneddatetypes.forEach(function(type) { %>
-              <option value="<%= type.value %>"><%= type.text %></option>
+              <option value="<%= type.value %>" <%= (type.value === '63' && slave.owneddatetype === undefined) ? "selected" : (type.value === slave.owneddatetype) ? "selected" : "" %>><%= type.text %></option>
           <% }); %>
         </td>
       </tr>
