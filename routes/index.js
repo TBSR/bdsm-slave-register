@@ -1,22 +1,25 @@
 /* eslint camelcase: ["error", {properties: "never"}] */
 /* eslint new-cap: [0] */
 /* eslint max-nested-callbacks: ["error", 6] */
+/* eslint-disable-line  max-lines */
 
 var express = require('express');
 var passport = require('passport');
 var path = require('path');
-var slrn = require('slrngen-js');
+var SGen = require('node-sgen');
 var slaveRegisterValid = require('../scraper').SlaveRegister;
-var pngimg = require('../png').png;
+var pngimg = require('../png').GeneratePng;
+// var verify = require('../recaptcha').Verify;
 var Account = require('../models/account');
 var Slave = require('../models/slave');
 var OwnerType = require('../models/ownertype');
 var OwnedMonth = require('../models/ownedmonth');
 var OwnedDateType = require('../models/owneddatetype');
 var router = express.Router();
+var sgen = SGen();
 
 function createPNG(code) {
-  pngimg(slrn.defmt(code), path.resolve('./public'), function (err) {
+  pngimg(sgen.defmt(code), path.resolve('./public'), function (err) {
     if (err) {
       console.log(err);
       return false;
@@ -141,30 +144,6 @@ router.get('/:id', loggedIn, (req, res) => {
       });
     }
   });
-  /* db.collection('slaves').findOne({slave_id: req.params.id}, (err, item) => {
-    if (err) {
-      return console.log(err);
-    }
-
-    if (item) {
-      if (!fileExists(path.resolve('./public/images/' + req.params.id + '.png'))) {
-        createPNG(req.params.id);
-      }
-      res.render('pages/viewcert', {slave: item});
-    } else {
-      slaveRegisterValid(req.params.id, function (valid, data) {
-        if (valid === 3) {
-          console.log('message:add new: ' + data.message);
-          res.render('pages/newinfo', {slave: data});
-        } else if (valid === 2) {
-          console.log('message:add existing: ' + data.message);
-          res.render('pages/newinfo', {slave: data});
-        } else {
-          res.render('pages/error', {slave: data});
-        }
-      });
-    }
-  });*/
 });
 
 router.get('/:id/cert', loggedIn, (req, res) => {
@@ -193,8 +172,8 @@ router.get('/i/slave', loggedIn, (req, res) => {
 });
 
 router.get('/i/slavecreate', loggedIn, (req, res) => {
-  var id = slrn.create();
-  var newID = slrn.fmt(id);
+  var id = sgen.create();
+  var newID = sgen.fmt(id);
   slaveRegisterValid(newID, function (valid, data) {
     if (valid === 2 || valid === 3) {
       console.log('message:slavecreate ' + data.message);
@@ -316,7 +295,7 @@ router.post('/:id/slaveupdate', loggedIn, (req, res) => {
     });
 });
 
-router.get('/i/slavemanage', loggedIn, (req, res) => {
+router.get('/i/manageslaves', loggedIn, (req, res) => {
   res.render('pages/error', {user: req.user, slave: {message: 'Not implemented!'}});
 });
 
@@ -325,10 +304,16 @@ router.get('/i/about', loggedIn, (req, res) => {
 });
 
 router.get('/p/register', (req, res) => {
-  res.render('pages/register', {slave: {}});
+  res.render('pages/register', {account: {}});
 });
 
 router.post('/p/register', (req, res) => {
+  console.log(req.body);
+  // verify('6LcBKCYTAAAAADkvigNHj2ZouRGoYnHFPV7oAM3O', req.body['g-recaptcha-response'], function(success) {
+  // console.log('before: success' + sucess);
+    // if (success) {
+      // console.log('success');
+      // res.end('Success!');
   if (req.body.password === req.body.confirmpassword) {
     Account.register(new Account({username: req.body.username,
       email: req.body.email,
@@ -337,15 +322,21 @@ router.post('/p/register', (req, res) => {
       function (err, account) {
         if (err) {
           console.log(err);
-          return res.render('pages/register', {slave: {}, account: account});
+          return res.render('pages/register', {account: req.body, message: err.message});
         }
         passport.authenticate('local')(req, res, function () {
           return res.render('pages/index', {slave: {message: 'Account created for ' + account.username}});
         });
       });
   } else {
-    return res.render('pages/register', {slave: {message: 'Username or password invalid.'}});
+    return res.render('pages/register', {account: {message: 'Username or password invalid.'}});
   }
+    /* } else {
+      // res.end('Captcha failed, try again.');
+      var merged = Object.assign({}, {user: req.user}, {account: {message: 'Username or password invalid.'}});
+      return res.render('pages/register', merged);
+    }
+  });*/
 });
 
 router.get('/p/login', (req, res) => {

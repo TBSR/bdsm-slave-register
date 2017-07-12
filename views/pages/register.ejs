@@ -3,31 +3,32 @@
 <head>
   <title>New Registration Form</title>
   <% include partials/head %>
+  <script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
 <body>
 
 <div class="mainbox">
   <h1>Enter information requested below</h1>
-  <p><%= slave.message %></p>
+  <p><%= account.message %></p>
   <p>You can use this form to enter you account information.</p>
   <table style="margin: 0 auto">
     <form method="post" action="/p/register">
       <tr class="grayrow">
         <td colspan="2">Full Name:</td>
         <td colspan="3">
-          <input type="text" name="fullname">
+          <input type="text" name="fullname" value="<%= account.fullname %>">
         </td>
       </tr>
       <tr class="grayrow">
         <td colspan="2">Email Address:</td>
         <td>
-          <input type="text" name="email">
+          <input type="text" name="email" value="<%= account.email %>">
         </td>
       </tr>
       <tr class="grayrow">
         <td colspan="2">Username:</td>
         <td>
-          <input type="text" name="username" size="20">
+          <input type="text" name="username" size="20" value="<%= account.username %>">
         </td>
       </tr>
       <tr class="grayrow">
@@ -42,6 +43,11 @@
           <input type="password" name="confirmpassword" size="20">
         </td>
       </tr>
+      <!--tr class="grayrow">
+        <td colspan="3" style="text-align: center; ">
+          <div class="g-recaptcha" data-sitekey="6LcBKCYTAAAAAN35t-zxMq79G9gnm3d5Iyf8nTmm"></div>
+        </td>
+      </tr-->
       <tr class="grayrow">
         <td colspan="3" style="text-align: center; ">
           <input type="submit" value="Submit">
